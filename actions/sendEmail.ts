@@ -29,7 +29,7 @@ export const sendEmail = async (formData: FormData) => {
       from: "Portfolio Portal <onboarding@resend.dev>",
       to: "prashant.sagar.shakya@gmail.com",
       subject: "Inquiry: Message from Portfolio Contact Form",
-      reply_to: senderEmail,
+      replyTo: senderEmail,
       react: React.createElement(ContactFormEmail, {
         message: message,
         senderEmail: senderEmail,
