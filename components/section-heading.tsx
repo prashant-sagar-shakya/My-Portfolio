@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -7,8 +9,8 @@ type SectionHeadingProps = {
 
 export default function SectionHeading({ children }: SectionHeadingProps) {
   return (
-    <motion.h2 
-      className="text-3xl font-medium capitalize mb-8 text-center"
+    <motion.h2
+      className="text-3xl font-bold capitalize mb-8 text-center gradient-text"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}

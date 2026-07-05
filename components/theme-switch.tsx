@@ -10,7 +10,7 @@ export default function ThemeSwitch() {
 
   return (
     <motion.button
-      className="fixed bottom-8 right-8 bg-white w-[3rem] h-[3rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-black/5 shadow-2xl rounded-full flex items-center justify-center dark:bg-gray-950 dark:border-white/10"
+      className="fixed bottom-8 right-8 z-50 bg-white w-[3rem] h-[3rem] bg-opacity-80 backdrop-blur-[0.5rem] border border-black/5 shadow-2xl rounded-full flex items-center justify-center dark:bg-neural-900/80 dark:border-white/[0.06]"
       onClick={toggleTheme}
       whileHover={{ scale: 1.15, y: -2 }}
       whileTap={{ scale: 0.95 }}
@@ -28,7 +28,7 @@ export default function ThemeSwitch() {
           {theme === "light" ? (
             <BsSun className="text-lg text-amber-500" />
           ) : (
-            <BsMoon className="text-lg text-blue-400" />
+            <BsMoon className="text-lg text-cyber-cyan" />
           )}
         </motion.div>
       </AnimatePresence>

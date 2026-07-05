@@ -1,48 +1,106 @@
 "use client";
 
-import React from "react";
+import React, { MouseEvent } from "react";
 import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
+import { LuTerminal, LuBrainCircuit } from "react-icons/lu";
 
 export default function About() {
-    const { ref } = useSectionInView("About");
+    const { ref } = useSectionInView("About", 0.4);
+
+    // 3D Tilt Logic
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
+    const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+    const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        
+        const width = rect.width;
+        const height = rect.height;
+        
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        
+        const xPct = mouseX / width - 0.5;
+        const yPct = mouseY / height - 0.5;
+        
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
 
     return (
         <motion.section
             ref={ref}
-            className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
-            initial={{ opacity: 0, y: 100 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.175 }}
+            className="mb-28 max-w-[65rem] sm:mb-40 scroll-mt-28 perspective-1000 px-4 w-full"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.8 }}
             id="about"
         >
-            <SectionHeading>About me</SectionHeading>
-            <p className="mb-3">
-                After completing my Intermediate degree, I decided to pursue my
-                passion for coding & programming. I enrolled in a Computer
-                Science College for Bachelor&apos;s degree and learned various
-                programming languages like:
-                <span className="font-medium"> C, C++, JAVA, Python</span>.{" "}
-                <span className="italic">My favorite part of programming</span>{" "}
-                is the problem-solving aspect. I{" "}
-                <span className="underline">love</span> the feeling of finally
-                figuring out a solution to a problem. My core stack is{" "}
-                <span className="font-medium">
-                    React, Next.js, Node.js, and MongoDB
-                </span>
-                . I&apos;m also familiar with TypeScript. I&apos;m always
-                looking to learn new technologies. I&apos;m currently looking
-                for a <span className="font-medium">full-time position</span> as
-                a software developer.
-            </p>
-            <p>
-                <span className="italic">When I&apos;m not coding</span>, I
-                enjoy playing video games, watching movies etc. I also enjoy{" "}
-                <span className="font-medium">learning new things</span>. I am
-                currently learning <span className="font-medium">OpenCV</span>.
-                I&apos;m also passionate about singing.
-            </p>
+            <SectionHeading>About Me</SectionHeading>
+
+            {/* 3D Interactive Container (Boxless) */}
+            <div className="flex justify-center mt-12 w-full perspective-[1500px]">
+                <motion.div
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    style={{
+                        rotateX,
+                        rotateY,
+                        transformStyle: "preserve-3d",
+                    }}
+                    className="relative w-full rounded-[2rem] p-4 sm:p-8 group cursor-crosshair"
+                >
+                    {/* Glowing Ambient Aura (Subtle, no sharp borders) */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyber-cyan/0 via-neon-violet/0 to-synapse-pink/0 group-hover:from-cyber-cyan/5 group-hover:via-neon-violet/5 group-hover:to-synapse-pink/5 transition-colors duration-1000 blur-3xl -z-10" />
+                    
+                    {/* Floating Tech Icons */}
+                    <motion.div 
+                        style={{ translateZ: 80 }}
+                        className="absolute top-0 right-10 text-gray-200 dark:text-white/5 text-9xl pointer-events-none"
+                    >
+                        <LuBrainCircuit />
+                    </motion.div>
+                    <motion.div 
+                        style={{ translateZ: 50 }}
+                        className="absolute bottom-0 left-10 text-gray-200 dark:text-white/5 text-8xl pointer-events-none"
+                    >
+                        <LuTerminal />
+                    </motion.div>
+
+                    {/* Content (Pushed forward on Z axis) */}
+                    <motion.div 
+                        style={{ translateZ: 100 }} 
+                        className="relative z-10 text-center sm:text-left space-y-8 text-gray-700 dark:text-gray-300 font-medium max-w-[50rem] mx-auto"
+                    >
+                        <p className="text-2xl sm:text-4xl leading-snug text-gray-900 dark:text-white font-extrabold tracking-tight drop-shadow-xl">
+                            I engineer <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-neon-violet">autonomous intelligence</span> and ship it to the edge.
+                        </p>
+                        
+                        <p className="text-lg sm:text-xl leading-relaxed">
+                            A <span className="font-bold text-gray-900 dark:text-white">Computer Science Engineer</span> obsessed with closing the gap between raw data and human interaction. My core engineering focus lies in architecting scalable Agentic AI workflows and deploying highly optimized machine learning models to production.
+                        </p>
+
+                        <p className="text-lg sm:text-xl leading-relaxed">
+                            But backend intelligence is useless if it lives in a vacuum. I pair my AI architecture with elite <span className="font-bold text-emerald-600 dark:text-emerald-400">Full-Stack Web</span> skills using React, Next.js, and Node to build seamless, breathtaking user interfaces.
+                        </p>
+                    </motion.div>
+
+                </motion.div>
+            </div>
         </motion.section>
     );
 }

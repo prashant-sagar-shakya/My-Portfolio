@@ -10,7 +10,7 @@ export default function SubmitBtn({ pending }: SubmitBtnProps) {
   return (
     <motion.button
       type="submit"
-      className="group flex items-center justify-center gap-2 h-[3rem] w-[8rem] bg-gray-900 text-white rounded-full outline-none transition-colors hover:bg-gray-950 dark:bg-white dark:bg-opacity-10 dark:hover:bg-white/15 disabled:bg-opacity-65 disabled:pointer-events-none"
+      className="group btn-gradient flex items-center justify-center gap-2 h-12 w-[9rem] rounded-full outline-none disabled:opacity-65 disabled:pointer-events-none shadow-lg shadow-cyber-cyan/20 font-semibold tracking-wide text-sm"
       disabled={pending}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -20,8 +20,8 @@ export default function SubmitBtn({ pending }: SubmitBtnProps) {
         <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
       ) : (
         <>
-          Submit{" "}
-          <FaPaperPlane className="text-xs opacity-70 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />{" "}
+          <span>Transmit</span>
+          <FaPaperPlane className="text-xs opacity-80 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
         </>
       )}
     </motion.button>
