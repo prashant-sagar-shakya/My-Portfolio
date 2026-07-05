@@ -37,10 +37,8 @@ export const experiencesData = [
         title: "QuadB Technologies — Blockchain Development Intern",
         location: "Remote",
         description: [
-            "Engineered and deployed 5+ robust blockchain smart contracts on live testnets.",
-            "Architected gas-optimized logic, reducing transaction fees by 30%.",
-            "Led a team of 4 developers to conduct 10+ extensive smart contract security audits.",
-            "Enhanced overall protocol security and compliance metrics by 40%."
+            "Engineered and deployed gas-optimized smart contracts on testnets, reducing transaction fees by 30%.",
+            "Led a 4-person team to conduct extensive security audits, enhancing protocol compliance by 40%."
         ],
         icon: React.createElement(LuTerminal),
         date: "Feb 2025 – Jun 2025",
@@ -90,7 +88,7 @@ export const projectsData = [
         description:
             "A centralized AI Engineering learning repository with structured notes, code implementations, projects, and real-world applications covering Data Analytics, Agentic AI, ML, and MLOps.",
         tags: ["Python", "LangChain", "Scikit-Learn", "FastAPI", "Docker"],
-        imageUrl: "/tutorialhub.png", // Using this as placeholder until a specific image is requested
+        imageUrl: "/brainwave.png",
     },
     {
         title: "Imaginify",
@@ -98,7 +96,7 @@ export const projectsData = [
         description:
             "An AI-powered image enhancement tool for restoring textures and background removal. Improved visual clarity of 200+ images by 70%. Achieved a 95+ Lighthouse performance score.",
         tags: ["Next.js", "AI Models", "TailwindCSS", "Performance", "Cloudinary"],
-        imageUrl: "/imaginify.png",
+        imageUrl: "/Imaginify.png",
     },
     {
         title: "TutorialHub",
@@ -106,7 +104,7 @@ export const projectsData = [
         description:
             "An AI-Powered Platform for Automated Educational Course Creation and Delivery. Generated automated course content, quizzes, and YouTube-integrated video lessons using Gemini AI.",
         tags: ["React", "Node.js", "Clerk", "Gemini AI", "Razorpay"],
-        imageUrl: "/tutorialhub.png",
+        imageUrl: "/Code-Alpha.png",
     },
     {
         title: "Krypt: Crypto-Exchange",
@@ -114,7 +112,7 @@ export const projectsData = [
         description:
             "A past Web3.0 experiment for secure Ethereum transactions. Processed 100+ test transactions integrating smart contracts for on-chain record-keeping.",
         tags: ["Solidity", "Smart Contracts", "Web3.js", "Ethereum"],
-        imageUrl: "/krypt.png",
+        imageUrl: "/Netflix.png",
     },
 ] as const;
 
@@ -150,7 +148,7 @@ export const skillCategories = [
         skills: ["MongoDB", "MySQL", "VS Code", "Postman", "System Design"]
     },
     {
-        title: "Blockchain (Minor)",
+        title: "Blockchain",
         icon: LuTerminal,
         color: "from-gray-500 to-slate-500",
         skills: ["Solidity", "Smart Contracts", "Web3.js", "Ethereum"]

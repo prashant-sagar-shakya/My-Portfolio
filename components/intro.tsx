@@ -40,13 +40,13 @@ export default function Intro() {
       <div className="flex items-center justify-center mb-6">
         <motion.div
           className="relative"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: -150, scale: 0.5 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
             type: "spring",
-            stiffness: 150,
-            damping: 15,
-            duration: 0.8,
+            stiffness: 400,
+            damping: 12,
+            mass: 1.2
           }}
         >
           {/* Animated glow behind image */}
@@ -79,7 +79,8 @@ export default function Intro() {
             transition={{
               type: "spring",
               stiffness: 125,
-              delay: 0.2,
+              delay: 0.5,
+              duration: 0.7,
               rotate: {
                 delay: 0.8,
                 duration: 1.5,

@@ -6,6 +6,29 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
 import { LuTerminal, LuBrainCircuit } from "react-icons/lu";
 
+const typewriterContainer = {
+    hidden: { opacity: 1 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.008, delayChildren: 0.3 }
+    }
+};
+
+const charVariants = {
+    hidden: { visibility: "hidden" as any },
+    visible: { visibility: "visible" as any }
+};
+
+const AnimatedText = ({ text, className = "" }: { text: string; className?: string }) => (
+    <span className={className}>
+        {text.split("").map((char, index) => (
+            <motion.span key={index} variants={charVariants}>
+                {char}
+            </motion.span>
+        ))}
+    </span>
+);
+
 export default function About() {
     const { ref } = useSectionInView("About", 0.4);
 
@@ -85,17 +108,27 @@ export default function About() {
                     <motion.div 
                         style={{ translateZ: 100 }} 
                         className="relative z-10 text-center sm:text-left space-y-8 text-gray-700 dark:text-gray-300 font-medium max-w-[50rem] mx-auto"
+                        variants={typewriterContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
                     >
                         <p className="text-2xl sm:text-4xl leading-snug text-gray-900 dark:text-white font-extrabold tracking-tight drop-shadow-xl">
-                            I engineer <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-neon-violet">autonomous intelligence</span> and ship it to the edge.
+                            <AnimatedText text="I engineer " />
+                            <AnimatedText text="autonomous intelligence" className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-neon-violet" />
+                            <AnimatedText text=" and ship it to the edge." />
                         </p>
                         
                         <p className="text-lg sm:text-xl leading-relaxed">
-                            A <span className="font-bold text-gray-900 dark:text-white">Computer Science Engineer</span> obsessed with closing the gap between raw data and human interaction. My core engineering focus lies in architecting scalable Agentic AI workflows and deploying highly optimized machine learning models to production.
+                            <AnimatedText text="A " />
+                            <AnimatedText text="Computer Science Engineer" className="font-bold text-gray-900 dark:text-white" />
+                            <AnimatedText text=" obsessed with closing the gap between raw data and human interaction. My core engineering focus lies in architecting scalable Agentic AI workflows and deploying highly optimized machine learning models to production." />
                         </p>
 
                         <p className="text-lg sm:text-xl leading-relaxed">
-                            But backend intelligence is useless if it lives in a vacuum. I pair my AI architecture with elite <span className="font-bold text-emerald-600 dark:text-emerald-400">Full-Stack Web</span> skills using React, Next.js, and Node to build seamless, breathtaking user interfaces.
+                            <AnimatedText text="But backend intelligence is useless if it lives in a vacuum. I pair my AI architecture with elite " />
+                            <AnimatedText text="Full-Stack Web" className="font-bold text-emerald-600 dark:text-emerald-400" />
+                            <AnimatedText text=" skills using React, Next.js, and Node to build seamless, breathtaking user interfaces." />
                         </p>
                     </motion.div>
 

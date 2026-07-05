@@ -32,12 +32,13 @@ const cardVariants: Variants = {
 
 const skillVariants: Variants = {
   hidden: (index: number) => {
-    const angle = (index * 73) * (Math.PI / 180); // 73 degrees spread
-    const distance = 200 + (index % 4) * 50; 
+    const angle = (index * 73) * (Math.PI / 180);
+    // Reduced distance drastically to prevent off-screen rendering lag
+    const distance = 40 + (index % 4) * 20; 
     
     return { 
       opacity: 0, 
-      scale: 0, 
+      scale: 0.5, 
       x: Math.cos(angle) * distance, 
       y: Math.sin(angle) * distance,
     };
@@ -49,9 +50,9 @@ const skillVariants: Variants = {
     y: 0,
     transition: { 
       type: "spring", 
-      stiffness: 200, 
-      damping: 8,
-      mass: 0.8
+      stiffness: 150, 
+      damping: 12,
+      mass: 0.5
     },
   },
 };
@@ -109,7 +110,7 @@ export default function Skills() {
                     key={skill}
                     custom={index}
                     variants={skillVariants}
-                    className="bg-white/60 dark:bg-black/20 backdrop-blur-md border border-black/5 dark:border-white/10 rounded-lg px-3 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 group-hover:border-black/10 dark:group-hover:border-white/20 transition-colors shadow-sm"
+                    className="bg-white/60 dark:bg-black/20 border border-black/5 dark:border-white/10 rounded-lg px-3 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 group-hover:border-black/10 dark:group-hover:border-white/20 transition-colors shadow-sm"
                   >
                     {skill}
                   </motion.li>
