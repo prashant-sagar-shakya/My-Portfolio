@@ -41,7 +41,7 @@ export default function Contact() {
     <motion.section
       id="contact"
       ref={ref}
-      className="mb-20 sm:mb-28 w-full max-w-[65rem] px-4 relative z-10 perspective-1000"
+      className="mb-16 sm:mb-24 w-full max-w-[65rem] px-4 relative z-10 perspective-1000"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}

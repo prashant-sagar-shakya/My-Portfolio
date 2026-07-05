@@ -72,7 +72,7 @@ export default function EngineeringApproach() {
     <section
       id="approach"
       ref={sectionRef}
-      className="mb-28 max-w-[60rem] scroll-mt-28 sm:mb-40 w-full px-4"
+      className="mb-16 max-w-[60rem] scroll-mt-28 sm:mb-24 w-full px-4"
     >
       <SectionHeading>My Engineering Approach</SectionHeading>
       <p className="text-center text-gray-500 dark:text-gray-500 mb-12 max-w-[42rem] mx-auto text-sm">

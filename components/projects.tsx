@@ -10,7 +10,7 @@ export default function Projects() {
   const { ref } = useSectionInView("Projects", 0.2);
 
   return (
-    <section ref={ref} id="projects" className="scroll-mt-28 mb-28 w-full max-w-[65rem] mx-auto px-4">
+    <section ref={ref} id="projects" className="scroll-mt-28 mb-16 w-full max-w-[65rem] mx-auto px-4">
       <SectionHeading>Featured Projects</SectionHeading>
       <p className="text-center text-gray-500 dark:text-gray-400 mb-16 max-w-[40rem] mx-auto text-sm sm:text-base">
         A selection of my best work in{" "}

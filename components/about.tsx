@@ -66,7 +66,7 @@ export default function About() {
     return (
         <motion.section
             ref={ref}
-            className="mb-28 max-w-[65rem] sm:mb-40 scroll-mt-28 perspective-1000 px-4 w-full"
+            className="mb-16 max-w-[65rem] sm:mb-24 scroll-mt-28 perspective-1000 px-4 w-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -112,19 +112,19 @@ export default function About() {
                         whileInView="visible"
                         viewport={{ once: true, margin: "-100px" }}
                     >
-                        <p className="text-3xl sm:text-[2.75rem] leading-snug text-gray-900 dark:text-white font-extrabold tracking-tight">
+                        <p className="text-[1.75rem] sm:text-[2.25rem] leading-snug text-gray-900 dark:text-white font-extrabold tracking-tight">
                             <AnimatedText text="I engineer " />
                             <AnimatedText text="autonomous intelligence" className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-neon-violet" />
                             <AnimatedText text=" and ship it to the edge." />
                         </p>
                         
-                        <p className="text-xl sm:text-2xl leading-relaxed">
+                        <p className="text-xl sm:text-[1.35rem] leading-relaxed">
                             <AnimatedText text="A " />
                             <AnimatedText text="Computer Science Engineer" className="font-bold text-gray-900 dark:text-white" />
                             <AnimatedText text=" obsessed with closing the gap between raw data and human interaction. My core engineering focus lies in architecting scalable Agentic AI workflows and deploying highly optimized machine learning models to production." />
                         </p>
 
-                        <p className="text-xl sm:text-2xl leading-relaxed">
+                        <p className="text-xl sm:text-[1.35rem] leading-relaxed">
                             <AnimatedText text="But backend intelligence is useless if it lives in a vacuum. I pair my AI architecture with elite " />
                             <AnimatedText text="Full-Stack Web" className="font-bold text-emerald-600 dark:text-emerald-400" />
                             <AnimatedText text=" skills using React, Next.js, and Node to build seamless, breathtaking user interfaces." />

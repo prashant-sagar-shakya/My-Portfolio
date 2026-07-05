@@ -50,7 +50,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="mb-28 max-w-[65rem] scroll-mt-28 w-full px-4"
+      className="mb-16 max-w-[65rem] scroll-mt-28 w-full px-4"
     >
       <SectionHeading>Technical Arsenal</SectionHeading>
       <p className="text-center text-gray-500 dark:text-gray-400 mb-16 max-w-[42rem] mx-auto text-sm sm:text-base">

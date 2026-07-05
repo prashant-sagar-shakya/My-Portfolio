@@ -19,7 +19,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40 w-full max-w-[65rem] px-4">
+    <section id="experience" ref={ref} className="scroll-mt-28 mb-16 sm:mb-24 w-full max-w-[65rem] px-4">
       <SectionHeading>Experience & Education</SectionHeading>
       <p className="text-center text-gray-500 dark:text-gray-400 mb-12 max-w-[42rem] mx-auto text-sm sm:text-base">
         My professional journey, engineered into an interactive dashboard.

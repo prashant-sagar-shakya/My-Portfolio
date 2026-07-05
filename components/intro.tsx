@@ -57,7 +57,7 @@ export default function Intro() {
     <section
       ref={ref}
       id="home"
-      className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem] relative z-10 w-full pt-12 sm:pt-20"
+      className="mb-16 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem] relative z-10 w-full pt-12 sm:pt-20"
     >
       {/* Profile Image with Animated Gradient Ring */}
       <div className="flex items-center justify-center mb-6">
