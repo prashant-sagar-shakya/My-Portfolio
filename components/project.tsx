@@ -56,7 +56,7 @@ export default function Project({
                 alt={title}
                 quality={95}
                 fill
-                className="object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-105"
+                className="object-contain p-2 transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
             </div>
           </div>

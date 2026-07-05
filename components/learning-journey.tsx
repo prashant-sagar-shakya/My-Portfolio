@@ -6,11 +6,13 @@ import { engineeringApproachData } from "@/lib/data";
 import { motion, useInView } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
 
-const ApproachCard = ({ item, index, startTyping }: { item: any; index: number; startTyping: boolean }) => {
+const ApproachCard = ({ item, index }: { item: any; index: number }) => {
   const [displayedText, setDisplayedText] = useState("");
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-50px" });
 
   useEffect(() => {
-    if (startTyping) {
+    if (isInView) {
       let i = 0;
       const interval = setInterval(() => {
         if (i < item.description.length) {
@@ -22,10 +24,11 @@ const ApproachCard = ({ item, index, startTyping }: { item: any; index: number; 
       }, 15); // Fast typing speed
       return () => clearInterval(interval);
     }
-  }, [startTyping, item.description]);
+  }, [isInView, item.description]);
 
   return (
     <motion.div
+      ref={cardRef}
       className="glass-card glass-card-hover p-8 relative overflow-hidden group cursor-default"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -64,8 +67,6 @@ const ApproachCard = ({ item, index, startTyping }: { item: any; index: number; 
 
 export default function EngineeringApproach() {
   const { ref: sectionRef } = useSectionInView("Approach" as any, 0.2);
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-50px" });
 
   return (
     <section
@@ -79,9 +80,9 @@ export default function EngineeringApproach() {
       </p>
 
       {/* Bento Box Grid Layout */}
-      <div ref={containerRef} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {engineeringApproachData.map((item, index) => (
-          <ApproachCard key={item.step} item={item} index={index} startTyping={isInView} />
+          <ApproachCard key={item.step} item={item} index={index} />
         ))}
       </div>
     </section>

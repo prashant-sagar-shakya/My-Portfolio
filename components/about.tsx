@@ -76,7 +76,7 @@ export default function About() {
             <SectionHeading>About Me</SectionHeading>
 
             {/* 3D Interactive Container (Boxless) */}
-            <div className="flex justify-center mt-12 w-full perspective-[1500px]">
+            <div className="flex justify-center mt-6 w-full perspective-[1500px]">
                 <motion.div
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -104,28 +104,27 @@ export default function About() {
                         <LuTerminal />
                     </motion.div>
 
-                    {/* Content (Pushed forward on Z axis) */}
+                    {/* Content */}
                     <motion.div 
-                        style={{ translateZ: 100 }} 
-                        className="relative z-10 text-center sm:text-left space-y-8 text-gray-700 dark:text-gray-300 font-medium max-w-[50rem] mx-auto"
+                        className="relative z-10 text-center sm:text-left space-y-5 text-gray-700 dark:text-gray-300 font-medium max-w-[65rem] mx-auto"
                         variants={typewriterContainer}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, margin: "-100px" }}
                     >
-                        <p className="text-2xl sm:text-4xl leading-snug text-gray-900 dark:text-white font-extrabold tracking-tight drop-shadow-xl">
+                        <p className="text-3xl sm:text-[2.75rem] leading-snug text-gray-900 dark:text-white font-extrabold tracking-tight">
                             <AnimatedText text="I engineer " />
                             <AnimatedText text="autonomous intelligence" className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-neon-violet" />
                             <AnimatedText text=" and ship it to the edge." />
                         </p>
                         
-                        <p className="text-lg sm:text-xl leading-relaxed">
+                        <p className="text-xl sm:text-2xl leading-relaxed">
                             <AnimatedText text="A " />
                             <AnimatedText text="Computer Science Engineer" className="font-bold text-gray-900 dark:text-white" />
                             <AnimatedText text=" obsessed with closing the gap between raw data and human interaction. My core engineering focus lies in architecting scalable Agentic AI workflows and deploying highly optimized machine learning models to production." />
                         </p>
 
-                        <p className="text-lg sm:text-xl leading-relaxed">
+                        <p className="text-xl sm:text-2xl leading-relaxed">
                             <AnimatedText text="But backend intelligence is useless if it lives in a vacuum. I pair my AI architecture with elite " />
                             <AnimatedText text="Full-Stack Web" className="font-bold text-emerald-600 dark:text-emerald-400" />
                             <AnimatedText text=" skills using React, Next.js, and Node to build seamless, breathtaking user interfaces." />
