@@ -31,28 +31,14 @@ const cardVariants: Variants = {
 };
 
 const skillVariants: Variants = {
-  hidden: (index: number) => {
-    const angle = (index * 73) * (Math.PI / 180);
-    // Reduced distance drastically to prevent off-screen rendering lag
-    const distance = 40 + (index % 4) * 20; 
-    
-    return { 
-      opacity: 0, 
-      scale: 0.5, 
-      x: Math.cos(angle) * distance, 
-      y: Math.sin(angle) * distance,
-    };
-  },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
-    scale: 1,
-    x: 0,
     y: 0,
     transition: { 
       type: "spring", 
-      stiffness: 150, 
-      damping: 12,
-      mass: 0.5
+      stiffness: 250, 
+      damping: 25,
     },
   },
 };
@@ -105,10 +91,9 @@ export default function Skills() {
 
               {/* Skills Pills */}
               <ul className="flex flex-wrap gap-2">
-                {category.skills.map((skill, index) => (
+                {category.skills.map((skill) => (
                   <motion.li
                     key={skill}
-                    custom={index}
                     variants={skillVariants}
                     className="bg-white/60 dark:bg-black/20 border border-black/5 dark:border-white/10 rounded-lg px-3 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300 group-hover:border-black/10 dark:group-hover:border-white/20 transition-colors shadow-sm"
                   >

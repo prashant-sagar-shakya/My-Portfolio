@@ -22,13 +22,36 @@ export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   const [roleIndex, setRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
+    const currentRole = roles[roleIndex];
+    let timeout: NodeJS.Timeout;
+
+    if (isDeleting) {
+      if (currentText === "") {
+        setIsDeleting(false);
+        setRoleIndex((prev) => (prev + 1) % roles.length);
+      } else {
+        timeout = setTimeout(() => {
+          setCurrentText(currentText.slice(0, -1));
+        }, 30);
+      }
+    } else {
+      if (currentText === currentRole) {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2000);
+      } else {
+        timeout = setTimeout(() => {
+          setCurrentText(currentRole.slice(0, currentText.length + 1));
+        }, 80);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, roleIndex]);
 
   return (
     <section
@@ -46,7 +69,7 @@ export default function Intro() {
             type: "spring",
             stiffness: 400,
             damping: 12,
-            mass: 1.2
+            mass: 1.2,
           }}
         >
           {/* Animated glow behind image */}
@@ -102,7 +125,9 @@ export default function Intro() {
         transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.1 }}
       >
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-3">
-          <span className="opacity-90 text-gray-900 dark:text-white">Hi, I'm </span>
+          <span className="opacity-90 text-gray-900 dark:text-white">
+            Hi, I'm{" "}
+          </span>
           <span className="gradient-text-hero">Prashant</span>
         </h1>
 
@@ -122,21 +147,25 @@ export default function Intro() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm sm:text-base border border-black/5 dark:border-white/10">
-          <span className="text-cyber-cyan font-mono font-bold text-xs">❯</span>
-          <AnimatePresence mode="wait">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neural-950/90 dark:bg-black border border-white/10 shadow-[0_0_15px_rgba(0,212,255,0.15)] backdrop-blur-md">
+          <span className="text-cyber-cyan font-mono font-bold text-xs sm:text-sm">
+            ~
+          </span>
+          <span className="text-gray-500 font-mono text-xs sm:text-sm">/</span>
+          <span className="text-neon-violet font-mono font-bold text-xs sm:text-sm">
+            prashant
+          </span>
+          <span className="text-white font-mono font-bold text-xs sm:text-sm mx-1">
+            ❯
+          </span>
+          <span className="font-mono text-gray-200 font-semibold text-xs sm:text-sm min-w-[210px] sm:min-w-[280px] text-left inline-flex items-center">
+            {currentText}
             <motion.span
-              key={roleIndex}
-              className="font-mono gradient-text-subtle font-semibold text-xs sm:text-sm"
-              initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -8, filter: "blur(4px)" }}
-              transition={{ duration: 0.35 }}
-            >
-              {roles[roleIndex]}
-            </motion.span>
-          </AnimatePresence>
-          <span className="inline-block w-1.5 h-4 bg-gray-400 dark:bg-gray-300 ml-0.5 animate-typing-cursor"></span>
+              className="inline-block w-1.5 h-4 sm:h-5 bg-cyber-cyan ml-1"
+              animate={{ opacity: [1, 0] }}
+              transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+            />
+          </span>
         </div>
       </motion.div>
 
@@ -161,7 +190,7 @@ export default function Intro() {
 
         <a
           className="group glass-card glass-card-hover px-7 py-3 flex items-center gap-2 rounded-full outline-none border border-black/5 dark:border-white/10 text-gray-900 dark:text-gray-100 font-semibold"
-          href="/CV.pdf"
+          href="/Prashant_Resume.pdf"
           download
         >
           Download CV{" "}
@@ -200,8 +229,12 @@ export default function Intro() {
           { label: "Smart Contracts", value: "5+" },
         ].map(({ label, value }) => (
           <div key={label} className="flex flex-col items-center gap-0.5 px-2">
-            <span className="text-lg sm:text-xl font-bold gradient-text-subtle">{value}</span>
-            <span className="text-[0.65rem] sm:text-[0.75rem] uppercase tracking-wider text-gray-500 font-semibold">{label}</span>
+            <span className="text-lg sm:text-xl font-bold gradient-text-subtle">
+              {value}
+            </span>
+            <span className="text-[0.65rem] sm:text-[0.75rem] uppercase tracking-wider text-gray-500 font-semibold">
+              {label}
+            </span>
           </div>
         ))}
       </motion.div>
