@@ -147,21 +147,15 @@ export default function Intro() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
       >
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neural-950/90 dark:bg-black border border-white/10 shadow-[0_0_15px_rgba(0,212,255,0.15)] backdrop-blur-md">
-          <span className="text-cyber-cyan font-mono font-bold text-xs sm:text-sm">
-            ~
-          </span>
+        <div className="inline-block px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-neural-950/90 dark:bg-black border border-white/10 shadow-[0_0_15px_rgba(0,212,255,0.15)] backdrop-blur-md max-w-[95vw] text-left leading-relaxed min-w-[280px] sm:min-w-[320px]">
+          <span className="text-cyber-cyan font-mono font-bold text-xs sm:text-sm">~</span>
           <span className="text-gray-500 font-mono text-xs sm:text-sm">/</span>
-          <span className="text-neon-violet font-mono font-bold text-xs sm:text-sm">
-            prashant
-          </span>
-          <span className="text-white font-mono font-bold text-xs sm:text-sm mx-1">
-            ❯
-          </span>
-          <span className="font-mono text-gray-200 font-semibold text-xs sm:text-sm min-w-[210px] sm:min-w-[280px] text-left inline-flex items-center">
+          <span className="text-neon-violet font-mono font-bold text-xs sm:text-sm">prashant</span>
+          <span className="text-white font-mono font-bold text-xs sm:text-sm mx-1">❯</span>
+          <span className="font-mono text-gray-200 font-semibold text-xs sm:text-sm">
             {currentText}
             <motion.span
-              className="inline-block w-1.5 h-4 sm:h-5 bg-cyber-cyan ml-1"
+              className="inline-block w-1.5 h-3.5 sm:h-4 bg-cyber-cyan ml-1 align-baseline -mb-0.5"
               animate={{ opacity: [1, 0] }}
               transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
             />

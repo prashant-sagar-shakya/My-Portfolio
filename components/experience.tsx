@@ -10,6 +10,8 @@ export default function Experience() {
   const { ref } = useSectionInView("Experience", 0.3);
   const [activeTab, setActiveTab] = useState(0);
 
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
   // Auto-play the tabs every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,6 +20,19 @@ export default function Experience() {
     return () => clearInterval(interval);
   }, []);
 
+  // Auto-scroll to active tab on mobile
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      // The first child is the animated line, so tabs start at index + 1
+      const activeElement = scrollContainerRef.current.children[activeTab + 1] as HTMLElement;
+      if (activeElement) {
+        const container = scrollContainerRef.current;
+        const scrollLeft = activeElement.offsetLeft - container.clientWidth / 2 + activeElement.clientWidth / 2;
+        container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      }
+    }
+  }, [activeTab]);
+
   return (
     <section id="experience" ref={ref} className="scroll-mt-28 mb-16 sm:mb-24 w-full max-w-[65rem] px-4">
       <SectionHeading>Experience & Education</SectionHeading>
@@ -25,10 +40,15 @@ export default function Experience() {
         My professional journey, engineered into an interactive dashboard.
       </p>
       
-      <div className="flex flex-col md:flex-row gap-8 mt-12 bg-gray-50/50 dark:bg-neural-950/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-4 sm:p-8 rounded-2xl shadow-xl">
+      <div className="relative flex flex-col md:flex-row gap-8 mt-12 p-4 sm:p-8">
+        {/* Glassmorphism Background (Separated to fix Safari/mobile scroll blur glitches) */}
+        <div className="absolute inset-0 bg-gray-50/50 dark:bg-neural-950/50 backdrop-blur-md border border-black/5 dark:border-white/5 rounded-2xl shadow-xl z-0 transform-gpu" />
         
         {/* Left Side: Tab List */}
-        <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 scrollbar-hide md:w-1/3 shrink-0 relative">
+        <div 
+          ref={scrollContainerRef}
+          className="flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 md:w-1/3 shrink-0 relative scroll-smooth z-10"
+        >
           {/* Animated active indicator line (desktop) */}
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-white/10" />
           
@@ -66,15 +86,15 @@ export default function Experience() {
         </div>
 
         {/* Right Side: Tab Content */}
-        <div className="flex-1 relative min-h-[300px]">
+        <div className="flex-1 relative h-[400px] sm:h-[350px] overflow-y-auto overscroll-none pr-2 scrollbar-hide transform-gpu z-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="absolute inset-0"
+              className="w-full"
             >
               <div className="flex items-center gap-4 mb-2">
                 <div className="w-10 h-10 rounded-xl bg-white dark:bg-neural-900 border border-black/5 dark:border-white/10 flex items-center justify-center shadow-sm text-cyber-cyan">
