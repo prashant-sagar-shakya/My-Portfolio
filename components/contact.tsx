@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact", 0.3);
-  const [isPending, setIsPending] = useState(false);
 
   // 3D Tilt Logic for the Form Card
   const x = useMotionValue(0);
@@ -89,7 +88,6 @@ export default function Contact() {
               className="flex flex-col gap-4 p-6 sm:p-8 relative z-10"
               style={{ transform: "translateZ(40px)" }}
               action={async (formData) => {
-                setIsPending(true);
                 try {
                   const { error } = await sendEmail(formData);
                   if (error) {
@@ -99,8 +97,6 @@ export default function Contact() {
                   toast.success("Message transmitted successfully!");
                 } catch (e: any) {
                   toast.error("Transmission failed. Please try again.");
-                } finally {
-                  setIsPending(false);
                 }
               }}
             >
@@ -132,7 +128,7 @@ export default function Contact() {
               </div>
 
               <div className="mt-4 relative z-20 flex justify-end">
-                <SubmitBtn pending={isPending} />
+                <SubmitBtn />
               </div>
             </form>
           </motion.div>
