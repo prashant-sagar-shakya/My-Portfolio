@@ -9,16 +9,26 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Experience() {
   const { ref } = useSectionInView("Experience", 0.3);
   const [activeTab, setActiveTab] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
 
-  // Auto-play the tabs every 4 seconds
+  // Smart Auto-play behavior
   useEffect(() => {
+    if (isPaused) {
+      // If user interacted, wait 10 seconds of inactivity before resuming
+      const timeout = setTimeout(() => {
+        setIsPaused(false);
+      }, 10000);
+      return () => clearTimeout(timeout);
+    }
+
     const interval = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % experiencesData.length);
-    }, 4000); // 4000ms = 4 seconds
+    }, 5000); // 5 seconds per card
+    
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
   // Auto-scroll to active tab on mobile
   useEffect(() => {
@@ -57,7 +67,10 @@ export default function Experience() {
             return (
               <button
                 key={index}
-                onClick={() => setActiveTab(index)}
+                onClick={() => {
+                  setActiveTab(index);
+                  setIsPaused(true);
+                }}
                 className={`relative flex flex-col items-start px-4 py-3 text-left transition-colors duration-300 rounded-lg md:rounded-none md:rounded-r-lg whitespace-nowrap md:whitespace-normal group ${
                   isActive
                     ? "bg-white dark:bg-neural-900 shadow-sm md:shadow-none"
@@ -86,7 +99,7 @@ export default function Experience() {
         </div>
 
         {/* Right Side: Tab Content */}
-        <div className="flex-1 relative h-[400px] sm:h-[350px] overflow-y-auto overscroll-none pr-2 scrollbar-hide transform-gpu z-10">
+        <div className="flex-1 relative h-[400px] sm:h-[350px] overflow-y-auto pr-2 scrollbar-hide transform-gpu z-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
