@@ -12,10 +12,10 @@ import { useActiveSectionContext } from "@/context/active-section-context";
 
 const roles = [
   "Building Intelligent AI Systems",
-  "Developing Scalable Web Apps",
-  "Training Machine Learning Models",
+  "Developing Scalable Backend APIs",
+  "Designing RAG & Agentic Workflows",
+  "Crafting Interactive Frontend UIs",
   "Solving DSA Problems in C++",
-  "Crafting Clean User Interfaces",
 ];
 
 export default function Intro() {
@@ -83,7 +83,6 @@ export default function Intro() {
                 alt="Prashant Portrait"
                 width={192}
                 height={192}
-                quality="95"
                 priority={true}
                 className="rounded-full object-cover shadow-2xl h-full w-full pointer-events-none"
               />
@@ -218,9 +217,9 @@ export default function Intro() {
         transition={{ delay: 0.6 }}
       >
         {[
-          { label: "AI Models/Agents", value: "3+" },
+          { label: "AI & Agentic Apps", value: "5+" },
           { label: "Web Apps Built", value: "10+" },
-          { label: "Smart Contracts", value: "5+" },
+          { label: "Lighthouse Score", value: "95+" },
         ].map(({ label, value }) => (
           <div key={label} className="flex flex-col items-center gap-0.5 px-2">
             <span className="text-lg sm:text-xl font-bold gradient-text-subtle">

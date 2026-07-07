@@ -83,75 +83,173 @@ export const experiencesData = [
 
 export const projectsData = [
     {
-        title: "Data Chronicles",
-        category: "AI Knowledge Base",
+        title: "CodeSageAI",
+        category: "AI SaaS",
         description:
-            "A centralized AI Engineering learning repository with structured notes, code implementations, projects, and real-world applications covering Data Analytics, Agentic AI, ML, and MLOps.",
-        tags: ["Python", "LangChain", "Scikit-Learn", "FastAPI", "Docker"],
+            "An AI-powered code review and pull request analysis platform. Simulates a senior engineer's review process with an autonomous 8-agent parallel architecture to detect bugs, security vulnerabilities, and performance issues with inline fix suggestions.",
+        tags: ["Next.js", "React", "Tailwind CSS", "TypeScript", "LangGraph", "FastAPI", "PostgreSQL"],
+        imageUrl: "/CodeSageAI.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/CodeSageAI",
+        projectUrl: "https://code-sage-ai-lake.vercel.app/",
+    },
+    {
+        title: "TutorialHub",
+        category: "AI SaaS",
+        description:
+            "An innovative AI-powered educational course creator generating detailed chapter contents, automated outlines, quizzes, payment checkouts (Razorpay), and relevant YouTube video integrations using Google Gemini.",
+        tags: ["Next.js", "TypeScript", "Drizzle ORM", "NeonDB", "Gemini AI", "Razorpay", "Clerk"],
+        imageUrl: "/tutorialhub.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/Tutorial-Hub",
+        projectUrl: "https://tutorial-hub.vercel.app/",
+    },
+    {
+        title: "Brainwave",
+        category: "AI Chat & Debugger",
+        description:
+            "A powerful AI-powered chat and debugging application with Clerk authentication and AWS Lambda serverless backend integration, delivering real-time responses and a customizable UI.",
+        tags: ["React.js", "Vite", "Tailwind CSS", "Clerk", "AWS Lambda", "Gemini API"],
         imageUrl: "/brainwave.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/Brainwave-AI-Debugger",
+        projectUrl: "https://brainwave-ai-debugger.vercel.app/",
+    },
+    {
+        title: "Writique",
+        category: "Full Stack Blog",
+        description:
+            "A modern full-stack MERN blog platform with user authentication via Clerk, role-based access control, rich markdown support, and optimized image uploads using Cloudinary.",
+        tags: ["React.js", "TypeScript", "Node.js", "Express", "MongoDB", "Clerk", "Cloudinary"],
+        imageUrl: "/writique.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/writique",
+        projectUrl: "https://writique-eight.vercel.app/",
     },
     {
         title: "Imaginify",
         category: "AI Image SaaS",
         description:
-            "An AI-powered image enhancement tool for restoring textures and background removal. Improved visual clarity of 200+ images by 70%. Achieved a 95+ Lighthouse performance score.",
-        tags: ["Next.js", "AI Models", "TailwindCSS", "Performance", "Cloudinary"],
+            "An AI-powered SaaS for image restoration, background removal, object recoloring, and generative filling. Features subscription plans using Razorpay and secure MongoDB data storage.",
+        tags: ["Next.js", "TypeScript", "Cloudinary", "MongoDB", "Razorpay", "Clerk"],
         imageUrl: "/Imaginify.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/Imaginify",
+        projectUrl: "https://imaginify-chi-two.vercel.app/",
     },
     {
-        title: "TutorialHub",
-        category: "Full Stack + AI",
+        title: "Code-Alpha",
+        category: "Online Code Editor",
         description:
-            "An AI-Powered Platform for Automated Educational Course Creation and Delivery. Generated automated course content, quizzes, and YouTube-integrated video lessons using Gemini AI.",
-        tags: ["React", "Node.js", "Clerk", "Gemini AI", "Razorpay"],
-        imageUrl: "/Code-Alpha.png",
+            "An online code editor supporting Python, C, C++, and Java environments. Implements real-time editing, syntax highlighting via CodeMirror, and Gemini-powered AI code completion and bug fixing.",
+        tags: ["HTML5", "Bootstrap", "JavaScript", "CodeMirror", "Node.js", "Gemini AI"],
+        imageUrl: "/codealpha.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/Code-Editor",
+        projectUrl: "https://code-editor-bk6c.onrender.com/",
     },
     {
-        title: "Krypt: Crypto-Exchange",
-        category: "Web3 & Blockchain",
+        title: "CF Buddy",
+        category: "Competitive Programming",
         description:
-            "A past Web3.0 experiment for secure Ethereum transactions. Processed 100+ test transactions integrating smart contracts for on-chain record-keeping.",
-        tags: ["Solidity", "Smart Contracts", "Web3.js", "Ethereum"],
-        imageUrl: "/Netflix.png",
+            "A modern Codeforces progress analyzer and comparison tool for competitive programmers. Provides 3D Three.js visualizations, rating history graphs, and Gemini AI-curated Daily Practice Problems.",
+        tags: ["React", "TypeScript", "Three.js", "Tailwind CSS", "Clerk", "MongoDB", "Gemini AI"],
+        imageUrl: "/cf-buddy.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/CF-Buddy",
+        projectUrl: "https://cf-buddy.netlify.app/",
+    },
+    {
+        title: "DeauthX",
+        category: "Cyber Security",
+        description:
+            "A command-line Wi-Fi penetration testing utility written in Python. Automates scanning networks and executing targeted deauthentication attacks against clients using the aircrack-ng suite on Linux.",
+        tags: ["Python", "Linux", "Aircrack-ng", "Penetration Testing", "Security"],
+        imageUrl: "/deauthX.png",
+        githubUrl: "https://github.com/prashant-sagar-shakya/DeauthX",
+        projectUrl: null,
     },
 ] as const;
 
 export const skillCategories = [
     {
-        title: "AI & Machine Learning",
+        title: "AI Engineering",
         icon: LuBrainCircuit,
         color: "from-pink-500 to-rose-500",
-        skills: ["Machine Learning", "Agentic AI", "Data Science", "Python", "Scikit-Learn"]
+        skills: [
+            "OpenAI API",
+            "LangChain",
+            "LangGraph",
+            "Prompt Engineering",
+            "RAG",
+            "AI Agents",
+            "MCP",
+            "Vector Databases",
+            "Embeddings"
+        ]
     },
     {
-        title: "Web Development",
-        icon: LuGlobe,
+        title: "Backend Development",
+        icon: LuTerminal,
         color: "from-blue-500 to-cyan-500",
-        skills: ["React.js", "Next.js", "Node.js", "Express.js", "HTML5", "CSS3"]
+        skills: [
+            "FastAPI",
+            "React.js",
+            "Next.js",
+            "Node.js",
+            "Express.js",
+            "REST APIs",
+            "Authentication (JWT/OAuth)",
+            "WebSockets"
+        ]
     },
     {
-        title: "Languages",
+        title: "Frontend Development",
+        icon: LuGlobe,
+        color: "from-emerald-500 to-teal-500",
+        skills: [
+            "React.js",
+            "Next.js",
+            "HTML5",
+            "CSS3",
+            "Tailwind CSS"
+        ]
+    },
+    {
+        title: "Programming Languages",
         icon: LuCode,
         color: "from-purple-500 to-violet-500",
-        skills: ["C", "C++", "Python", "JavaScript", "TypeScript"]
-    },
-    {
-        title: "Cloud & DevOps",
-        icon: LuRocket,
-        color: "from-emerald-500 to-teal-500",
-        skills: ["AWS", "Docker", "Linux", "Git", "Cyber Security Basics"]
+        skills: [
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "Golang",
+            "SQL",
+            "C++"
+        ]
     },
     {
         title: "Databases & Tools",
         icon: LuDatabase,
         color: "from-indigo-500 to-blue-500",
-        skills: ["MongoDB", "MySQL", "VS Code", "Postman", "System Design"]
+        skills: [
+            "PostgreSQL",
+            "MongoDB",
+            "MySQL",
+            "Git & GitHub",
+            "GitHub Actions",
+            "Docker",
+            "Postman",
+            "Linux",
+            "VS Code"
+        ]
     },
     {
-        title: "Blockchain",
-        icon: LuTerminal,
-        color: "from-gray-500 to-slate-500",
-        skills: ["Solidity", "Smart Contracts", "Web3.js", "Ethereum"]
+        title: "Core Concepts",
+        icon: LuNetwork,
+        color: "from-orange-500 to-amber-500",
+        skills: [
+            "Data Structures & Algorithms",
+            "OOP",
+            "DBMS",
+            "Operating Systems",
+            "Computer Networks",
+            "Software Engineering",
+            "System Design"
+        ]
     }
 ];
 

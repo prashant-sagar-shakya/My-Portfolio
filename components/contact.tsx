@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, MouseEvent } from "react";
+import React, { useState, useEffect, MouseEvent } from "react";
 import SectionHeading from "./section-heading";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
@@ -35,6 +35,14 @@ export default function Contact() {
     x.set(0);
     y.set(0);
   };
+
+  const [isMobile, setIsMobile] = useState(true);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <motion.section
@@ -78,15 +86,14 @@ export default function Contact() {
           <motion.div
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-            className="w-full relative rounded-[2.5rem] overflow-hidden bg-gray-50/80 dark:bg-neural-950/80 backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl group"
+            style={isMobile ? {} : { rotateX, rotateY }}
+            className="w-full relative rounded-[2.5rem] overflow-hidden bg-gray-100 dark:bg-neural-950 sm:bg-gray-50/80 sm:dark:bg-neural-950/80 sm:backdrop-blur-2xl border border-black/5 dark:border-white/10 shadow-2xl group sm:[transform-style:preserve-3d]"
           >
             {/* Ambient background glow inside the card */}
             <div className="absolute inset-0 bg-gradient-to-br from-cyber-cyan/10 via-transparent to-neon-violet/10 opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
             <form
-              className="flex flex-col gap-4 p-6 sm:p-8 relative z-10"
-              style={{ transform: "translateZ(40px)" }}
+              className="flex flex-col gap-4 p-6 sm:p-8 relative z-10 sm:[transform:translateZ(40px)]"
               action={async (formData) => {
                 try {
                   const { error } = await sendEmail(formData);
@@ -104,7 +111,7 @@ export default function Contact() {
                 <label className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 ml-1">Your Email</label>
                 <div className="relative group/input">
                   <input
-                    className="w-full h-14 px-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-black/40 backdrop-blur-md transition-all outline-none focus:bg-white dark:focus:bg-black/60 focus:ring-2 focus:ring-cyber-cyan/50 focus:border-transparent placeholder:text-gray-400 dark:placeholder:text-gray-600 text-sm sm:text-base text-gray-900 dark:text-gray-100 shadow-sm"
+                    className="w-full h-14 px-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black sm:bg-white/80 sm:dark:bg-black/40 sm:backdrop-blur-md transition-all outline-none focus:bg-white dark:focus:bg-black focus:ring-2 focus:ring-cyber-cyan/50 focus:border-transparent placeholder:text-gray-400 dark:placeholder:text-gray-400 text-sm sm:text-base text-gray-900 dark:text-gray-100 shadow-sm"
                     name="senderEmail"
                     type="email"
                     required
@@ -118,7 +125,7 @@ export default function Contact() {
                 <label className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 ml-1">Your Message</label>
                 <div className="relative group/textarea">
                   <textarea
-                    className="w-full h-32 px-6 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-black/40 backdrop-blur-md transition-all outline-none focus:bg-white dark:focus:bg-black/60 focus:ring-2 focus:ring-neon-violet/50 focus:border-transparent placeholder:text-gray-400 dark:placeholder:text-gray-600 text-sm sm:text-base text-gray-900 dark:text-gray-100 resize-none shadow-sm leading-relaxed"
+                    className="w-full h-32 px-6 py-4 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black sm:bg-white/80 sm:dark:bg-black/40 sm:backdrop-blur-md transition-all outline-none focus:bg-white dark:focus:bg-black focus:ring-2 focus:ring-neon-violet/50 focus:border-transparent placeholder:text-gray-400 dark:placeholder:text-gray-400 text-sm sm:text-base text-gray-900 dark:text-gray-100 resize-none shadow-sm leading-relaxed"
                     name="message"
                     placeholder="Hello Prashant, I was impressed by your portfolio and wanted to reach out regarding..."
                     required
