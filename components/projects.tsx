@@ -15,13 +15,24 @@ export default function Projects() {
   // Duplicate the array 3 times to create a seamless infinite loop
   const duplicatedProjects = [...projectsData, ...projectsData, ...projectsData];
 
+  // Helper to accurately calculate the width of a single set of projects
+  const getSingleSetWidth = () => {
+    const container = scrollContainerRef.current;
+    if (!container || container.children.length < projectsData.length) return 0;
+    const firstItem = container.children[0] as HTMLElement;
+    const middleItem = container.children[projectsData.length] as HTMLElement;
+    return middleItem.offsetLeft - firstItem.offsetLeft;
+  };
+
   // Initialize scroll position to the start of the middle set
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (container) {
       setTimeout(() => {
-        const singleSetWidth = container.scrollWidth / 3;
-        container.scrollLeft = singleSetWidth;
+        const singleSetWidth = getSingleSetWidth();
+        if (singleSetWidth > 0) {
+          container.scrollLeft = singleSetWidth;
+        }
       }, 100);
     }
   }, []);
@@ -36,13 +47,14 @@ export default function Projects() {
     }
 
     const interval = setInterval(() => {
-      if (scrollContainerRef.current) {
-        const container = scrollContainerRef.current;
-        const singleSetWidth = container.scrollWidth / 3;
+      const container = scrollContainerRef.current;
+      if (container) {
+        const singleSetWidth = getSingleSetWidth();
+        if (singleSetWidth === 0) return;
         
         // If we have scrolled into the 3rd set, instantly jump back to the exact same visual spot in the 2nd set
         if (container.scrollLeft >= singleSetWidth * 2 - 200) {
-          container.scrollBy({ left: -singleSetWidth, behavior: "auto" });
+          container.scrollLeft -= singleSetWidth;
         }
         
         // Then smoothly scroll forward
@@ -57,16 +69,17 @@ export default function Projects() {
 
   const handleManualScroll = (direction: 'left' | 'right') => {
     setIsPaused(true); 
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const singleSetWidth = container.scrollWidth / 3;
+    const container = scrollContainerRef.current;
+    if (container) {
+      const singleSetWidth = getSingleSetWidth();
+      if (singleSetWidth === 0) return;
       const scrollAmount = direction === 'left' ? -850 : 850;
 
       // Handle infinite boundaries for manual scrolling too
       if (direction === 'right' && container.scrollLeft >= singleSetWidth * 2 - 200) {
-        container.scrollBy({ left: -singleSetWidth, behavior: "auto" });
+        container.scrollLeft -= singleSetWidth;
       } else if (direction === 'left' && container.scrollLeft <= singleSetWidth + 200) {
-        container.scrollBy({ left: singleSetWidth, behavior: "auto" });
+        container.scrollLeft += singleSetWidth;
       }
 
       setTimeout(() => {
@@ -116,7 +129,6 @@ export default function Projects() {
         <div 
           ref={scrollContainerRef}
           className="w-full flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 sm:gap-10 items-center px-[50vw]"
-          style={{ scrollBehavior: "smooth" }}
         >
           {duplicatedProjects.map((project, index) => (
             <Project 
