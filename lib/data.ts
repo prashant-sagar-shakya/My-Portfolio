@@ -175,10 +175,7 @@ export const skillCategories = [
             "LangGraph",
             "Prompt Engineering",
             "RAG",
-            "AI Agents",
-            "MCP",
-            "Vector Databases",
-            "Embeddings"
+            "AI Agents"
         ]
     },
     {
@@ -191,9 +188,7 @@ export const skillCategories = [
             "Next.js",
             "Node.js",
             "Express.js",
-            "REST APIs",
-            "Authentication (JWT/OAuth)",
-            "WebSockets"
+            "REST APIs"
         ]
     },
     {
@@ -216,7 +211,6 @@ export const skillCategories = [
             "Python",
             "JavaScript",
             "TypeScript",
-            "Golang",
             "SQL",
             "C++"
         ]
